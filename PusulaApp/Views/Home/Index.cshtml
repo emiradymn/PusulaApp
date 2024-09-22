@@ -1,0 +1,95 @@
+﻿@model CombinedViewModel
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h4>Ürün Tablosu</h4>
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>ProductID</th>
+                        <th>ProductName</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var product in Model.Products)
+                    {
+                    <tr>
+                        <td>@product.ProductID</td>
+                        <td>@product.ProductName</td>
+                        <td>@product.Price</td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-md-6">
+            <h4>Satış Tablosu</h4>
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>SaleID</th>
+                        <th>ProductID</th>
+                        <th>Quantity</th>
+                        <th>SaleDate</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var sale in Model.Sales)
+                    {
+                    <tr>
+                        <td>@sale.SaleID</td>
+                        <td>@sale.ProductID</td>
+                        <td>@sale.Quantity</td>
+                        <td>@sale.SaleDate.ToString("yyyy-MM-dd")</td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+
+        <div class="col-md-6">
+
+            <h4>Satış Analiz Tablosu</h4>
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Ürün İsmi</th>
+                        <th>Toplam Satış Değeri</th>
+                        <th>Toplam Satış Miktarı</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in ViewBag.SalesData)
+                    {
+                    <tr>
+                        <td>@item.ProductName</td>
+                        <td>@item.TotalSalesAmount</td>
+                        <td>@item.TotalSalesCount</td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+
+        <div class="col-md-6 mt-4 ">
+            <div class="card text-bg-secondary mb-3" style="max-width: 18rem;">
+                <div class="card-header">En Yüksek Toplam Satışa Sahip Ürün</div>
+                <div class="card-body">
+                    <div class="row">
+
+                        <p class="card-text">Ürün Adı: @ViewBag.HighSalesProduct.ProductName</p>
+                        <p class="card-text">Toplam Satış Tutarı: @ViewBag.HighSalesProduct.TotalSalesAmount</p>
+                        <p class="card-text">Toplam Satış Sayısı: @ViewBag.HighSalesProduct.TotalSalesCount</p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
